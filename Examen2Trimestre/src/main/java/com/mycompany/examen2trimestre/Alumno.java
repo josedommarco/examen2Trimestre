@@ -19,8 +19,11 @@ public class Alumno {
     private double eie;
     private double hlc;
 
-    public Alumno(String nombre, String apellidos, double ad, double sge, double di,
-                  double pmdm, double psp, double eie, double hlc) {
+    public Alumno(){
+        
+    }
+
+    public Alumno(String nombre, String apellidos, double ad, double sge, double di, double pmdm, double psp, double eie, double hlc) {
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.ad = ad;
@@ -29,6 +32,44 @@ public class Alumno {
         this.pmdm = pmdm;
         this.psp = psp;
         this.eie = eie;
+        this.hlc = hlc;
+    }
+    
+    
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setApellidos(String apellidos) {
+        this.apellidos = apellidos;
+    }
+
+    public void setAd(double ad) {
+        this.ad = ad;
+    }
+
+    public void setSge(double sge) {
+        this.sge = sge;
+    }
+
+    public void setDi(double di) {
+        this.di = di;
+    }
+
+    public void setPmdm(double pmdm) {
+        this.pmdm = pmdm;
+    }
+
+    public void setPsp(double psp) {
+        this.psp = psp;
+    }
+
+    public void setEie(double eie) {
+        this.eie = eie;
+    }
+
+    public void setHlc(double hlc) {
         this.hlc = hlc;
     }
 
@@ -68,25 +109,26 @@ public class Alumno {
         return hlc;
     }
 
-    public double getMedia() {
-        double[] notas = {ad, sge, di, pmdm, psp, eie, hlc};
-        double suma = 0.0;
-        int numAprobados = 0;
-        int numSuspensos = 0;
-        for (double nota : notas) {
-            suma += nota;
-            if (nota >= 5.0) {
-                numAprobados++;
-            } else {
-                numSuspensos++;
-            }
-        }
-        if (numSuspensos == 0) {
-            return suma / notas.length;
+   public double getMedia() {
+    double[] notas = {ad, sge, di, pmdm, psp, eie, hlc};
+    double suma = 0.0;
+    int numAprobados = 0;
+    int numSuspensos = 0;
+    for (double nota : notas) {
+        suma += nota;
+        if (nota >= 5.0) {
+            numAprobados++;
         } else {
-            return -1.0;
+            numSuspensos++;
         }
     }
+    if (numSuspensos == 0) {
+        return suma / notas.length;
+    } else {
+        return suma / (notas.length - numSuspensos);
+    }
+}
+
 
     public int getNumSuspensos() {
         double[] notas = {ad, sge, di, pmdm, psp, eie, hlc};
@@ -98,5 +140,8 @@ public class Alumno {
         }
         return numSuspensos;
     }
+    
+   
+
 }
 
